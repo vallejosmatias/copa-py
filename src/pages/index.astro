@@ -1,0 +1,568 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const event = {
+  countryFlag: "🇵🇾",
+  title: "Copa América PMU – Paraguay",
+  subtitle: "Semifinal Oficial rumbo a Punta Cana 2026",
+  venue: "Hotel Guaraní – Asunción, Paraguay",
+  dates: "3 y 4 de Mayo de 2026",
+  intro:
+    "Paraguay es sede oficial de la Copa América PMU, el primer campeonato intercontinental de micropigmentación creado para la comunidad latina. Dos días donde el talento, la técnica y la identidad de nuestra región se encuentran en un escenario de alto nivel.",
+};
+
+const categories = [
+  "Brows – Microblading",
+  "Brows – Hairstroke",
+  "Lips – Full Lips",
+  "Shadow – Efecto Polvo",
+];
+
+const pricing = {
+  presale: {
+    price: "USD 500",
+    includes: [
+      "Acceso a los dos días (Campeonato + Congreso)",
+      "1 categoría de competencia de regalo (a elección)",
+    ],
+    extraCategory: "USD 200 por categoría adicional",
+  },
+  masterclass: {
+    price: "USD 800",
+    includes: ["Acceso a la Masterclass", "Acceso gratuito al día de Congreso"],
+    note: "No incluye categoría de competencia (las categorías se abonan por separado).",
+  },
+  demoNacional: {
+    price: "USD 400",
+    note: "Este valor es independiente de la entrada al evento.",
+    bullets: ["Posicionar tu marca", "Mostrar tu técnica", "Ganar visibilidad internacional"],
+  },
+};
+
+const starSpeaker = {
+  name: "Juan Cordero",
+  topic: "Hairstrokes",
+  text:
+    "Juan Cordero, uno de los referentes más importantes de Hairstrokes en Latinoamérica, llega a Paraguay como speaker principal de la Copa América PMU.",
+  masterclassText:
+    "Masterclass exclusiva de Hairstrokes (Post Congreso): formación intensiva y avanzada para artistas que buscan perfeccionar técnica, criterio y resultados de nivel internacional.",
+};
+
+const finals = {
+  title: "Gran Final Copa América PMU",
+  location: "Punta Cana – República Dominicana",
+  dates: "1, 2 y 3 de Octubre 2026",
+  text:
+    "Las artistas ganadoras de Paraguay clasifican a la Gran Final Intercontinental, donde competirán las mejores de toda Latinoamérica.",
+};
+
+const nav = [
+  { id: "wulop", label: "Copa" },
+  { id: "evento", label: "Evento" },
+  { id: "dias", label: "Días" },
+  { id: "speaker", label: "Speaker" },
+  { id: "categorias", label: "Categorías" },
+  { id: "entradas", label: "Entradas" },
+  { id: "clasificacion", label: "Clasificación" },
+  { id: "contacto", label: "Contacto" },
+];
+---
+
+<Layout>
+
+  <!-- Estilos “Alicia” embebidos (podés moverlos a global.css si querés) -->
+  <style>
+    :global(:root){
+      --ink: #1c1b22;
+      --ink-2: #2a2933;
+      --cream: #fbf6ea;
+      --paper: rgba(255,255,255,.72);
+      --lav: #6b5cff;
+      --teal: #0ea5a4;
+      --rose: #ff4fa3;
+      --gold: #d1a954;
+    }
+    :global(html){ scroll-behavior: smooth; }
+    :global(body){
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--ink);
+      background: radial-gradient(1200px 600px at 20% 10%, rgba(107,92,255,.18), transparent 60%),
+                  radial-gradient(900px 500px at 90% 20%, rgba(14,165,164,.16), transparent 55%),
+                  radial-gradient(1100px 700px at 60% 90%, rgba(255,79,163,.12), transparent 60%),
+                  linear-gradient(180deg, var(--cream), #fff);
+    }
+    .title-font { font-family: Cinzel, serif; letter-spacing: .02em; }
+    .card {
+      background: rgba(255,255,255,.78);
+      border: 1px solid rgba(28,27,34,.10);
+      box-shadow: 0 18px 50px rgba(28,27,34,.10);
+      backdrop-filter: blur(10px);
+    }
+    .stroke {
+      border: 1px solid rgba(28,27,34,.12);
+    }
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(28,27,34,.18), transparent);
+    }
+    .pattern-cards {
+      background-image:
+        radial-gradient(circle at 10px 10px, rgba(28,27,34,.06) 2px, transparent 2px),
+        radial-gradient(circle at 30px 30px, rgba(107,92,255,.08) 2px, transparent 2px),
+        radial-gradient(circle at 20px 40px, rgba(14,165,164,.08) 2px, transparent 2px);
+      background-size: 48px 48px;
+      mask-image: radial-gradient(ellipse at center, black 55%, transparent 75%);
+    }
+    .chip {
+      border: 1px solid rgba(28,27,34,.14);
+      background: rgba(255,255,255,.65);
+    }
+    .btn-primary{
+      background: linear-gradient(135deg, var(--lav), var(--rose));
+      color: #fff;
+    }
+    .btn-primary:hover{ filter: brightness(.98); }
+    .btn-soft{
+      background: rgba(255,255,255,.70);
+      border: 1px solid rgba(28,27,34,.14);
+    }
+    .btn-soft:hover{ background: rgba(255,255,255,.85); }
+    .ribbon{
+      background: linear-gradient(90deg, rgba(14,165,164,.12), rgba(107,92,255,.12), rgba(255,79,163,.10));
+      border: 1px solid rgba(28,27,34,.10);
+    }
+  </style>
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 border-b border-black/10 bg-white/70 backdrop-blur">
+    <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
+      <a href="#top" class="flex items-center gap-2">
+        <span class="text-lg">{event.countryFlag}</span>
+        <span class="title-font text-sm font-semibold">
+          COPA AMÉRICA PMU · PARAGUAY
+        </span>
+      </a>
+
+      <nav class="hidden gap-5 md:flex">
+        {nav.map((n) => (
+          <a href={`#${n.id}`} class="text-xs font-semibold text-black/70 hover:text-black transition">
+            {n.label}
+          </a>
+        ))}
+      </nav>
+
+      <a href="#entradas" class="rounded-full px-4 py-2 text-xs font-semibold btn-soft">
+        Ver entradas
+      </a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <main id="top">
+    <section class="relative mx-auto max-w-6xl px-4 pt-14 pb-10">
+      <!-- Ornamento de fondo tipo “naipes” -->
+      <div class="pointer-events-none absolute inset-0 -z-10 pattern-cards"></div>
+
+      <div class="grid gap-8 md:grid-cols-2 md:items-center">
+        <div>
+          <div class="inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs ribbon">
+            <span class="font-semibold">Semifinal Oficial</span>
+            <span class="opacity-40">•</span>
+            <span>Rumbo a Punta Cana 2026</span>
+          </div>
+
+          <h1 class="mt-5 title-font text-4xl font-semibold tracking-tight md:text-5xl text-[color:var(--ink)]">
+            {event.title}
+          </h1>
+          <p class="mt-3 text-lg text-black/70">
+            {event.subtitle}
+          </p>
+
+          <div class="mt-6 grid gap-3 text-sm text-black/70">
+            <div class="flex items-center gap-2">
+              <span class="chip rounded-md px-2 py-1 text-xs">📍</span>
+              <span>{event.venue}</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="chip rounded-md px-2 py-1 text-xs">📅</span>
+              <span>{event.dates}</span>
+            </div>
+          </div>
+
+          <p class="mt-6 max-w-xl text-sm leading-relaxed text-black/70">
+            {event.intro}
+          </p>
+
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a href="#entradas" class="rounded-full px-6 py-3 text-sm font-semibold btn-primary">
+              Quiero participar
+            </a>
+            <a href="#dias" class="rounded-full px-6 py-3 text-sm font-semibold btn-soft">
+              Ver estructura del evento
+            </a>
+          </div>
+
+          <div class="mt-6 flex flex-wrap gap-2 text-xs text-black/60">
+            <span class="chip rounded-full px-3 py-2">🕰️ Precisión</span>
+            <span class="chip rounded-full px-3 py-2">🎴 Técnica</span>
+            <span class="chip rounded-full px-3 py-2">🚪 Acceso internacional</span>
+            <span class="chip rounded-full px-3 py-2">🌿 Comunidad latina</span>
+          </div>
+        </div>
+
+        <!-- Hero Card Alicia -->
+        <div class="relative">
+          <div class="card rounded-3xl p-7">
+            <div class="flex items-start justify-between gap-4">
+              <div>
+                <p class="text-xs font-semibold text-black/60">Temática</p>
+                <h2 class="mt-1 title-font text-2xl font-semibold text-[color:var(--ink)]">
+                  Alicia en el País de las Maravillas
+                </h2>
+                <p class="mt-2 text-sm text-black/70">
+                  Puertas, relojes, naipes y jardín surreal — llevado a un look editorial,
+                  elegante y claro para leer toda la información.
+                </p>
+              </div>
+
+              <!-- Icon “puerta” en SVG -->
+              <div class="shrink-0 rounded-2xl stroke bg-white/60 px-3 py-2">
+                <svg width="34" height="34" viewBox="0 0 24 24" fill="none" class="opacity-90">
+                  <path d="M6 20V6.5L14.5 4v16L6 20Z" stroke="currentColor" stroke-width="1.5"/>
+                  <path d="M14.5 4H18v16h-3.5" stroke="currentColor" stroke-width="1.5"/>
+                  <circle cx="12.7" cy="12" r="0.7" fill="currentColor"/>
+                </svg>
+              </div>
+            </div>
+
+            <div class="mt-6 grid gap-3 md:grid-cols-2">
+              <div class="rounded-2xl stroke bg-white/60 p-4">
+                <p class="text-xs font-semibold text-black/60">Formato</p>
+                <p class="mt-1 text-sm font-semibold text-[color:var(--ink)]">Campeonato + Congreso</p>
+                <p class="mt-2 text-xs text-black/70">
+                  Competencia en modelo real + formación, demos y premiación.
+                </p>
+              </div>
+              <div class="rounded-2xl stroke bg-white/60 p-4">
+                <p class="text-xs font-semibold text-black/60">Destino</p>
+                <p class="mt-1 text-sm font-semibold text-[color:var(--ink)]">Clasifica a Punta Cana</p>
+                <p class="mt-2 text-xs text-black/70">
+                  Ganadoras Paraguay → final intercontinental Oct 2026.
+                </p>
+              </div>
+            </div>
+
+            <div class="mt-6 divider"></div>
+
+            <div class="mt-5 flex flex-wrap gap-2 text-xs text-black/65">
+              <span class="chip rounded-full px-3 py-2">🎓 Formación avanzada</span>
+              <span class="chip rounded-full px-3 py-2">🏆 Evaluación internacional</span>
+              <span class="chip rounded-full px-3 py-2">🤝 Networking</span>
+            </div>
+          </div>
+
+          <div class="pointer-events-none absolute -bottom-10 -right-10 h-44 w-44 rounded-full bg-[color:var(--rose)]/15 blur-3xl"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COPA -->
+    <section id="wulop" class="mx-auto max-w-6xl px-4 py-12">
+      <div class="card rounded-3xl p-8">
+        <p class="text-xs font-semibold tracking-wide text-[color:var(--lav)]">WULOP / Copa América PMU</p>
+        <h2 class="mt-2 title-font text-3xl font-semibold text-[color:var(--ink)]">
+          El campeonato intercontinental para la comunidad latina
+        </h2>
+        <p class="mt-4 max-w-3xl text-sm leading-relaxed text-black/70">
+          Dos días donde el talento, la técnica y la identidad regional se encuentran en un escenario profesional.
+          Evaluación con jueces bajo estándares internacionales adaptados a nuestra estética y rasgos.
+        </p>
+      </div>
+    </section>
+
+    <!-- EVENTO -->
+    <section id="evento" class="mx-auto max-w-6xl px-4 py-12">
+      <div class="grid gap-6 md:grid-cols-3">
+        <div class="card rounded-3xl p-7 md:col-span-2">
+          <h2 class="title-font text-3xl font-semibold text-[color:var(--ink)]">Datos del evento</h2>
+
+          <div class="mt-5 grid gap-3 text-sm text-black/70">
+            <div class="flex items-center gap-2">
+              <span class="chip rounded-md px-2 py-1 text-xs">📍</span>
+              <span>{event.venue}</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="chip rounded-md px-2 py-1 text-xs">📅</span>
+              <span>{event.dates}</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="chip rounded-md px-2 py-1 text-xs">🏁</span>
+              <span>Semifinal oficial rumbo a Punta Cana 2026</span>
+            </div>
+          </div>
+
+          <div class="mt-6 rounded-2xl stroke bg-white/60 p-5">
+            <p class="text-sm text-black/70">
+              <span class="font-semibold text-[color:var(--ink)]">Dos días</span> de competencia y formación con alto estándar.
+            </p>
+          </div>
+        </div>
+
+        <div class="card rounded-3xl p-7">
+          <p class="text-xs font-semibold tracking-wide text-[color:var(--teal)]">Atajos</p>
+          <div class="mt-4 grid gap-3 text-sm">
+            <a class="rounded-2xl stroke bg-white/60 px-4 py-3 hover:bg-white/80 transition" href="#dias">→ Estructura del evento</a>
+            <a class="rounded-2xl stroke bg-white/60 px-4 py-3 hover:bg-white/80 transition" href="#entradas">→ Entradas & precios</a>
+            <a class="rounded-2xl stroke bg-white/60 px-4 py-3 hover:bg-white/80 transition" href="#clasificacion">→ Clasificación</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DIAS -->
+    <section id="dias" class="mx-auto max-w-6xl px-4 py-12">
+      <h2 class="title-font text-3xl font-semibold text-[color:var(--ink)]">🗓️ Estructura del Evento</h2>
+
+      <div class="mt-6 grid gap-6 md:grid-cols-2">
+        <div class="card rounded-3xl p-7">
+          <p class="text-xs font-semibold tracking-wide text-[color:var(--rose)]">Día 1</p>
+          <h3 class="mt-2 title-font text-xl font-semibold text-[color:var(--ink)]">🏆 Campeonato Oficial</h3>
+          <p class="mt-3 text-sm leading-relaxed text-black/70">
+            Competencia en <span class="font-semibold text-[color:var(--ink)]">modelo real</span> dentro de las categorías oficiales.
+            Evaluación por jueces profesionales con criterios internacionales diseñados para estética latina.
+          </p>
+        </div>
+
+        <div class="card rounded-3xl p-7">
+          <p class="text-xs font-semibold tracking-wide text-[color:var(--teal)]">Día 2</p>
+          <h3 class="mt-2 title-font text-xl font-semibold text-[color:var(--ink)]">🎤 Congreso + Premiación</h3>
+          <ul class="mt-4 list-disc space-y-2 pl-5 text-sm text-black/70">
+            <li>Formación avanzada</li>
+            <li>Inspiración</li>
+            <li>Demos en vivo</li>
+            <li>Speakers internacionales</li>
+            <li>Networking</li>
+          </ul>
+          <p class="mt-4 text-sm leading-relaxed text-black/70">
+            Ceremonia oficial de premiación + anuncio de clasificadas a la Gran Final Intercontinental.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SPEAKER -->
+    <section id="speaker" class="mx-auto max-w-6xl px-4 py-12">
+      <div class="card rounded-3xl p-8">
+        <p class="text-xs font-semibold tracking-wide text-[color:var(--lav)]">⭐ Speaker Estrella</p>
+        <h2 class="mt-2 title-font text-3xl font-semibold text-[color:var(--ink)]">
+          {starSpeaker.name} — {starSpeaker.topic}
+        </h2>
+        <p class="mt-4 max-w-3xl text-sm leading-relaxed text-black/70">{starSpeaker.text}</p>
+
+        <div class="mt-6 grid gap-6 md:grid-cols-2">
+          <div class="rounded-3xl stroke bg-white/60 p-6">
+            <h3 class="title-font text-lg font-semibold text-[color:var(--ink)]">🎓 Masterclass exclusiva (Post Congreso)</h3>
+            <p class="mt-3 text-sm leading-relaxed text-black/70">{starSpeaker.masterclassText}</p>
+          </div>
+
+          <div class="rounded-3xl stroke bg-white/60 p-6">
+            <h3 class="title-font text-lg font-semibold text-[color:var(--ink)]">Para quién es</h3>
+            <ul class="mt-4 list-disc space-y-2 pl-5 text-sm text-black/70">
+              <li>Artistas que quieren perfeccionar técnica y criterio</li>
+              <li>Quienes buscan resultados de nivel internacional</li>
+              <li>Profesionales que quieren posicionarse en 2026</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CATEGORÍAS -->
+    <section id="categorias" class="mx-auto max-w-6xl px-4 py-12">
+      <h2 class="title-font text-3xl font-semibold text-[color:var(--ink)]">🎯 Categorías Oficiales</h2>
+
+      <div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {categories.map((c) => (
+          <div class="card rounded-3xl p-6 hover:translate-y-[-2px] transition">
+            <div class="text-sm font-semibold text-[color:var(--ink)]">{c}</div>
+            <div class="mt-2 text-xs text-black/60">Competencia en modelo real</div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- ENTRADAS -->
+    <section id="entradas" class="mx-auto max-w-6xl px-4 py-12">
+      <h2 class="title-font text-3xl font-semibold text-[color:var(--ink)]">🎟️ Entradas y Participación</h2>
+
+      <div class="mt-6 grid gap-6 lg:grid-cols-3">
+        <div class="card rounded-3xl p-7">
+          <p class="text-xs font-semibold tracking-wide text-[color:var(--rose)]">🔥 Preventa Oficial</p>
+          <div class="mt-3 title-font text-3xl font-semibold text-[color:var(--ink)]">{pricing.presale.price}</div>
+          <ul class="mt-5 space-y-2 text-sm text-black/70">
+            {pricing.presale.includes.map((i) => (
+              <li class="flex gap-2"><span class="text-emerald-600">✔</span><span>{i}</span></li>
+            ))}
+          </ul>
+          <div class="mt-5 rounded-2xl stroke bg-white/60 p-4 text-sm text-black/70">
+            <span class="font-semibold text-[color:var(--ink)]">Categorías adicionales:</span> {pricing.presale.extraCategory}
+          </div>
+          <a href="#contacto" class="mt-6 inline-flex w-full items-center justify-center rounded-2xl px-5 py-3 text-sm font-semibold btn-primary">
+            Reservar preventa
+          </a>
+        </div>
+
+        <div class="card rounded-3xl p-7">
+          <p class="text-xs font-semibold tracking-wide text-[color:var(--lav)]">🎓 Masterclass Juan Cordero</p>
+          <div class="mt-3 title-font text-3xl font-semibold text-[color:var(--ink)]">{pricing.masterclass.price}</div>
+          <ul class="mt-5 space-y-2 text-sm text-black/70">
+            {pricing.masterclass.includes.map((i) => (
+              <li class="flex gap-2"><span class="text-emerald-600">✔</span><span>{i}</span></li>
+            ))}
+          </ul>
+          <div class="mt-5 rounded-2xl stroke bg-white/60 p-4 text-sm text-black/70">
+            <span class="font-semibold text-[color:var(--ink)]">Importante:</span> {pricing.masterclass.note}
+          </div>
+          <a href="#contacto" class="mt-6 inline-flex w-full items-center justify-center rounded-2xl px-5 py-3 text-sm font-semibold btn-soft">
+            Consultar Masterclass
+          </a>
+        </div>
+
+        <div class="card rounded-3xl p-7">
+          <p class="text-xs font-semibold tracking-wide text-[color:var(--gold)]">🎤 Demos Nacionales</p>
+          <div class="mt-3 title-font text-3xl font-semibold text-[color:var(--ink)]">{pricing.demoNacional.price}</div>
+          <p class="mt-4 text-sm text-black/70">
+            Demos en vivo frente al público, jueces y speakers internacionales.
+          </p>
+          <div class="mt-4 rounded-2xl stroke bg-white/60 p-4 text-sm text-black/70">
+            {pricing.demoNacional.note}
+          </div>
+          <ul class="mt-5 list-disc space-y-2 pl-5 text-sm text-black/70">
+            {pricing.demoNacional.bullets.map((b) => <li>{b}</li>)}
+          </ul>
+          <a href="#contacto" class="mt-6 inline-flex w-full items-center justify-center rounded-2xl px-5 py-3 text-sm font-semibold btn-soft">
+            Postularme como Demo
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CLASIFICACIÓN -->
+    <section id="clasificacion" class="mx-auto max-w-6xl px-4 py-12">
+      <div class="card rounded-3xl p-8">
+        <p class="text-xs font-semibold tracking-wide text-[color:var(--teal)]">🌴 Clasificación Internacional</p>
+        <h2 class="mt-2 title-font text-3xl font-semibold text-[color:var(--ink)]">{finals.title}</h2>
+        <p class="mt-4 max-w-3xl text-sm leading-relaxed text-black/70">{finals.text}</p>
+
+        <div class="mt-6 grid gap-4 md:grid-cols-2">
+          <div class="rounded-3xl stroke bg-white/60 p-6">
+            <div class="text-xs text-black/60">Destino</div>
+            <div class="mt-1 text-lg font-semibold text-[color:var(--ink)]">{finals.location}</div>
+          </div>
+          <div class="rounded-3xl stroke bg-white/60 p-6">
+            <div class="text-xs text-black/60">Fechas</div>
+            <div class="mt-1 text-lg font-semibold text-[color:var(--ink)]">{finals.dates}</div>
+          </div>
+        </div>
+
+        <div class="mt-7 flex flex-wrap gap-3">
+          <a href="#contacto" class="rounded-full px-6 py-3 text-sm font-semibold btn-primary">
+            Quiero competir y clasificar
+          </a>
+          <a href="#categorias" class="rounded-full px-6 py-3 text-sm font-semibold btn-soft">
+            Ver categorías
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto" class="mx-auto max-w-6xl px-4 py-14">
+      <div class="grid gap-6 md:grid-cols-3">
+        <div class="card rounded-3xl p-8 md:col-span-2">
+          <h2 class="title-font text-3xl font-semibold text-[color:var(--ink)]">Contacto / Inscripción</h2>
+          <p class="mt-3 text-sm text-black/70">
+            Pegá acá tu WhatsApp oficial, un formulario o el link de ManyChat.
+          </p>
+
+          <div class="mt-6 flex flex-wrap gap-3">
+            <a
+              href="https://wa.me/0000000000?text=Hola%20quiero%20info%20de%20Copa%20Am%C3%A9rica%20PMU%20Paraguay"
+              target="_blank"
+              class="rounded-full px-6 py-3 text-sm font-semibold btn-primary"
+              rel="noreferrer"
+            >
+              WhatsApp
+            </a>
+
+            <a href="#entradas" class="rounded-full px-6 py-3 text-sm font-semibold btn-soft">
+              Ver precios
+            </a>
+
+            <a href="#top" class="rounded-full px-6 py-3 text-sm font-semibold btn-soft">
+              Volver arriba
+            </a>
+          </div>
+
+          <div class="mt-7 rounded-2xl stroke bg-white/60 p-5 text-sm text-black/70">
+            <p class="font-semibold text-[color:var(--ink)]">Checklist rápido</p>
+            <ul class="mt-3 list-disc space-y-2 pl-5">
+              <li>Definir link final de pago / preventa</li>
+              <li>Definir número WhatsApp oficial</li>
+              <li>Armar formulario (competidor / comunidad / demo nacional)</li>
+              <li>Agregar sponsors (si aplica)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card rounded-3xl p-8">
+          <p class="text-xs font-semibold tracking-wide text-[color:var(--lav)]">Resumen rápido</p>
+          <div class="mt-4 space-y-3 text-sm text-black/70">
+            <div class="flex justify-between gap-4">
+              <span>Preventa</span>
+              <span class="font-semibold text-[color:var(--ink)]">{pricing.presale.price}</span>
+            </div>
+            <div class="flex justify-between gap-4">
+              <span>Cat. extra</span>
+              <span class="font-semibold text-[color:var(--ink)]">{pricing.presale.extraCategory}</span>
+            </div>
+            <div class="flex justify-between gap-4">
+              <span>Masterclass</span>
+              <span class="font-semibold text-[color:var(--ink)]">{pricing.masterclass.price}</span>
+            </div>
+            <div class="flex justify-between gap-4">
+              <span>Demo nacional</span>
+              <span class="font-semibold text-[color:var(--ink)]">{pricing.demoNacional.price}</span>
+            </div>
+          </div>
+
+          <div class="mt-6 rounded-2xl stroke bg-white/60 p-5 text-xs text-black/60">
+            CTA principal a WhatsApp + botón secundario a formulario.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="border-t border-black/10 py-8">
+      <div class="mx-auto flex max-w-6xl flex-col gap-2 px-4 text-xs text-black/55 md:flex-row md:items-center md:justify-between">
+        <p>© {new Date().getFullYear()} Copa América PMU · Paraguay</p>
+        <p class="opacity-80">One-page landing · Astro + Tailwind</p>
+      </div>
+    </footer>
+  </main>
+
+  <!-- Mobile bottom nav -->
+  <nav class="fixed bottom-3 left-1/2 z-50 w-[min(680px,92vw)] -translate-x-1/2 rounded-2xl border border-black/10 bg-white/70 p-2 backdrop-blur md:hidden">
+    <div class="flex items-center justify-between gap-2 overflow-x-auto">
+      {nav.map((n) => (
+        <a
+          class="shrink-0 rounded-xl border border-black/10 bg-white/60 px-3 py-2 text-xs font-semibold text-black/70 hover:bg-white/85 transition"
+          href={`#${n.id}`}
+        >
+          {n.label}
+        </a>
+      ))}
+    </div>
+  </nav>
+
+</Layout>
