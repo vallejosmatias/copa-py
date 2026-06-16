@@ -28,11 +28,36 @@ const pricing = {
     extraCategory: "USD 200 por categoría adicional",
     extraCategory2: "USD 200",
   },
+
   masterclass: {
-    price: "USD 900",
-    includes: ["Acceso a la Masterclass", "Acceso gratuito al día de Congreso"],
-    note: "No incluye categoría de competencia (las categorías se abonan por separado).",
+    title: "MASTER JUAN CORDERO",
+    dates: "25 y 26 de julio",
+    tiers: [
+      {
+        label: "Preventa 1",
+        list: "USD 1000",
+        cash: "USD 900",
+        deposit: "USD 100",
+        status: "closed",
+      },
+      {
+        label: "Preventa 2",
+        list: "USD 1100",
+        cash: "USD 1000",
+        deposit: "USD 150",
+        status: "active",
+      },
+      {
+        label: "Venta General",
+        list: "USD 1300",
+        cash: "USD 1200",
+        deposit: "USD 200",
+        status: "next",
+      },
+    ],
+    note: "Cupos limitados. Reservá tu lugar con la seña y asegurá el precio de preventa.",
   },
+
   demoNacional: {
     price: "USD 400",
     note: "Este valor es independiente de la entrada al evento.",
@@ -49,8 +74,7 @@ const starSpeaker = {
   topic: "Hairstrokes",
   text: "Juan Cordero, uno de los referentes más importantes de Hairstrokes en Latinoamérica, llega a Paraguay como speaker principal de la Copa América PMU.",
   masterclassText:
-    "Masterclass exclusiva de Hairstrokes (Post Congreso): formación intensiva y avanzada para artistas que buscan perfeccionar técnica, criterio y resultados de nivel internacional.",
-  // poné tu imagen acá (public/images/speaker-juan.jpg)
+    "Masterclass exclusiva de Hairstrokes: formación intensiva para artistas que buscan perfeccionar técnica, criterio y resultados de nivel internacional.",
   imgSrc: "/curso.jpeg",
   imgAlt: "Speaker - Juan Cordero",
 };
@@ -65,7 +89,6 @@ const organizer = {
     "Su enfoque integra arte, técnica y lectura facial, desarrollando una metodología propia basada en el realismo, el respeto por la fisonomía y las particularidades de las pieles latinas.",
     "Ha sido jueza en campeonatos internacionales y speaker en escenarios de alto nivel, además de organizadora de congresos y competencias, espacios creados para elevar estándares, profesionalizar el rubro y generar crecimiento real en la industria.",
   ],
-  // poné tu imagen acá (public/images/organizer-liz.jpg)
   imgSrc: "/liz.jpeg",
 };
 
@@ -78,7 +101,6 @@ const teamLeader = {
     "Fundadora de Sra. Belleza, cuenta con más de siete años de experiencia en micropigmentación.",
     "Es creadora de congresos nacionales y colaboradora en congresos internacionales, trabajando activamente para elevar el nivel de formación y conocimiento del rubro en Paraguay, integrando técnica, estrategia y visión.",
   ],
-  // poné tu imagen acá (public/images/team-sara.jpg)
   imgSrc: "/sara.jpeg",
 };
 
@@ -90,7 +112,7 @@ const finals = {
 };
 
 const nav = [
-  { id: "Copa", label: "Copa" },
+  { id: "wulop", label: "Copa" },
   { id: "evento", label: "Evento" },
   { id: "dias", label: "Días" },
   { id: "equipo", label: "Equipo" },
@@ -112,7 +134,6 @@ const nav = [
         name="description"
         content="Semifinal oficial rumbo a Medellín 2026. Campeonato + Congreso Internacional de micropigmentación en Asunción, Paraguay."
       />
-      <!-- Fuentes “Alicia / editorial” (CDN rápido). Si preferís local, te lo adapto -->
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
       <link
@@ -122,7 +143,6 @@ const nav = [
     </head>
 
     <body>
-      <!-- Estilos “Alicia” embebidos -->
       <style>
         :global(:root) {
           --ink: #1c1b22;
@@ -269,7 +289,6 @@ const nav = [
           border: 1px dashed rgba(28, 27, 34, 0.25);
           background: rgba(255, 255, 255, 0.55);
         }
-        /* Si la imagen carga, ocultamos el placeholder con CSS puro */
         .avatar:has(img) {
           background: #fff;
         }
@@ -278,7 +297,6 @@ const nav = [
         }
       </style>
 
-      <!-- Header -->
       <header
         class="sticky top-0 z-50 border-b border-black/10 bg-white/70 backdrop-blur"
       >
@@ -314,7 +332,6 @@ const nav = [
         </div>
       </header>
 
-      <!-- HERO -->
       <main id="top">
         <section class="relative mx-auto max-w-6xl px-4 pt-14 pb-10">
           <div class="pointer-events-none absolute inset-0 -z-10 pattern-cards">
@@ -335,9 +352,8 @@ const nav = [
               >
                 {event.title}
               </h1>
-              <p class="mt-3 text-lg text-black/70">
-                {event.subtitle}
-              </p>
+
+              <p class="mt-3 text-lg text-black/70">{event.subtitle}</p>
 
               <div class="mt-6 grid gap-3 text-sm text-black/70">
                 <div class="flex items-center gap-2">
@@ -381,7 +397,6 @@ const nav = [
               </div>
             </div>
 
-            <!-- Hero Card Alicia -->
             <div class="relative">
               <div class="card rounded-3xl p-7">
                 <div class="flex items-start justify-between gap-4">
@@ -431,6 +446,7 @@ const nav = [
                       premiación.
                     </p>
                   </div>
+
                   <div class="rounded-2xl stroke bg-white/60 p-4">
                     <p class="text-xs font-semibold text-black/60">Destino</p>
                     <p
@@ -466,7 +482,6 @@ const nav = [
           </div>
         </section>
 
-        <!-- COPA -->
         <section id="wulop" class="mx-auto max-w-6xl px-4 py-12">
           <div class="card rounded-3xl p-8">
             <p
@@ -487,7 +502,6 @@ const nav = [
           </div>
         </section>
 
-        <!-- EVENTO -->
         <section id="evento" class="mx-auto max-w-6xl px-4 py-12">
           <div class="grid gap-6 md:grid-cols-3">
             <div class="card rounded-3xl p-7 md:col-span-2">
@@ -516,7 +530,8 @@ const nav = [
                 <p class="text-sm text-black/70">
                   <span class="font-semibold text-[color:var(--ink)]"
                     >Dos días</span
-                  > de competencia y formación con alto estándar.
+                  >
+                  de competencia y formación con alto estándar.
                 </p>
               </div>
             </div>
@@ -527,29 +542,37 @@ const nav = [
               >
                 Atajos
               </p>
+
               <div class="mt-4 grid gap-3 text-sm">
                 <a
                   class="rounded-2xl stroke bg-white/60 px-4 py-3 hover:bg-white/80 transition"
-                  href="#dias">→ Estructura del evento</a
+                  href="#dias"
                 >
+                  → Estructura del evento
+                </a>
                 <a
                   class="rounded-2xl stroke bg-white/60 px-4 py-3 hover:bg-white/80 transition"
-                  href="#equipo">→ Equipo</a
+                  href="#equipo"
                 >
+                  → Equipo
+                </a>
                 <a
                   class="rounded-2xl stroke bg-white/60 px-4 py-3 hover:bg-white/80 transition"
-                  href="#entradas">→ Entradas & precios</a
+                  href="#entradas"
                 >
+                  → Entradas & precios
+                </a>
                 <a
                   class="rounded-2xl stroke bg-white/60 px-4 py-3 hover:bg-white/80 transition"
-                  href="#clasificacion">→ Clasificación</a
+                  href="#clasificacion"
                 >
+                  → Clasificación
+                </a>
               </div>
             </div>
           </div>
         </section>
 
-        <!-- DIAS -->
         <section id="dias" class="mx-auto max-w-6xl px-4 py-12">
           <h2 class="title-font text-3xl font-semibold text-[color:var(--ink)]">
             🗓️ Estructura del Evento
@@ -571,7 +594,8 @@ const nav = [
                 Competencia en <span
                   class="font-semibold text-[color:var(--ink)]"
                   >modelo real</span
-                > dentro de las categorías oficiales. Evaluación por jueces profesionales
+                >
+                dentro de las categorías oficiales. Evaluación por jueces profesionales
                 con criterios internacionales diseñados para estética latina.
               </p>
             </div>
@@ -602,7 +626,6 @@ const nav = [
           </div>
         </section>
 
-        <!-- EQUIPO -->
         <section id="equipo" class="mx-auto max-w-6xl px-4 py-12">
           <div class="card rounded-3xl p-8">
             <p
@@ -610,18 +633,19 @@ const nav = [
             >
               ♟️ Equipo
             </p>
+
             <h2
               class="mt-2 title-font text-3xl font-semibold text-[color:var(--ink)]"
             >
               Organización & liderazgo
             </h2>
+
             <p class="mt-4 max-w-3xl text-sm leading-relaxed text-black/70">
               Personas que sostienen la estructura del evento y elevan el
               estándar: criterio, visión y ejecución.
             </p>
 
             <div class="mt-8 grid gap-8 lg:grid-cols-2">
-              <!-- Organizer -->
               <article class="rounded-3xl stroke bg-white/60 p-6">
                 <div class="grid gap-6 md:grid-cols-[180px_1fr]">
                   <div class="avatar">
@@ -653,7 +677,6 @@ const nav = [
                 </div>
               </article>
 
-              <!-- Team Leader -->
               <article class="rounded-3xl stroke bg-white/60 p-6">
                 <div class="grid gap-6 md:grid-cols-[180px_1fr]">
                   <div class="avatar">
@@ -688,7 +711,6 @@ const nav = [
           </div>
         </section>
 
-        <!-- SPEAKER -->
         <section id="speaker" class="mx-auto max-w-6xl px-4 py-12">
           <div class="card rounded-3xl p-8">
             <p
@@ -715,7 +737,7 @@ const nav = [
                     <h3
                       class="title-font text-lg font-semibold text-[color:var(--ink)]"
                     >
-                      🎓 Masterclass exclusiva (Post Congreso)
+                      🎓 Masterclass exclusiva
                     </h3>
                     <p class="mt-3 text-sm leading-relaxed text-black/70">
                       {starSpeaker.masterclassText}
@@ -755,7 +777,6 @@ const nav = [
           </div>
         </section>
 
-        <!-- CATEGORÍAS -->
         <section id="categorias" class="mx-auto max-w-6xl px-4 py-12">
           <h2 class="title-font text-3xl font-semibold text-[color:var(--ink)]">
             🎯 Categorías Oficiales
@@ -777,404 +798,458 @@ const nav = [
           </div>
         </section>
 
-        <!-- ENTRADAS -->
         <section id="entradas" class="mx-auto max-w-6xl px-4 py-12">
           <h2 class="title-font text-3xl font-semibold text-[color:var(--ink)]">
             🎟️ Entradas y Participación
           </h2>
 
-          <div class="mt-6 grid gap-6 lg:grid-cols-3">
-            <div class="card rounded-3xl p-7">
-              <p
-                class="text-xs font-semibold tracking-wide text-[color:var(--rose)]"
-              >
-                🔥Segunda Preventa Oficial
-              </p>
-              <div
-                class="mt-3 title-font text-3xl font-semibold text-[color:var(--ink)]"
-              >
-                {pricing.presale.price}
-              </div>
-              <ul class="mt-5 space-y-2 text-sm text-black/70">
-                {
-                  pricing.presale.includes.map((i) => (
-                    <li class="flex gap-2">
-                      <>
-                        <span class="text-emerald-600">✔</span>
-                        <span>{i}</span>
-                      </>
-                    </li>
-                  ))
-                }
-              </ul>
-              <div
-                class="mt-5 rounded-2xl stroke bg-white/60 p-4 text-sm text-black/70"
-              >
-                <span class="font-semibold text-[color:var(--ink)]"
-                  >Categorías adicionales:</span
-                >
-                {pricing.presale.extraCategory}
-              </div>
-              <a
-                href="#contacto"
-                class="mt-6 inline-flex w-full items-center justify-center rounded-2xl px-5 py-3 text-sm font-semibold btn-primary"
-              >
-                Reservar preventa
-              </a>
-            </div>
-
-            <div class="card rounded-3xl p-7">
-              <p
-                class="text-xs font-semibold tracking-wide text-[color:var(--lav)]"
-              >
-                🎓 Masterclass Juan Cordero
-              </p>
-              <div
-                class="mt-3 title-font text-3xl font-semibold text-[color:var(--ink)]"
-              >
-                {pricing.masterclass.price}
-              </div>
-              <ul class="mt-5 space-y-2 text-sm text-black/70">
-                {
-                  pricing.masterclass.includes.map((i) => (
-                    <li class="flex gap-2">
-                      <>
-                        <span class="text-emerald-600">✔</span>
-                        <span>{i}</span>
-                      </>
-                    </li>
-                  ))
-                }
-              </ul>
-              <div
-                class="mt-5 rounded-2xl stroke bg-white/60 p-4 text-sm text-black/70"
-              >
-                <span class="font-semibold text-[color:var(--ink)]"
-                  >Importante:</span
-                >
-                {pricing.masterclass.note}
-              </div>
-              <a
-                href="#contacto"
-                class="mt-6 inline-flex w-full items-center justify-center rounded-2xl px-5 py-3 text-sm font-semibold btn-soft"
-              >
-                Consultar Masterclass
-              </a>
-            </div>
-
-            <div class="card rounded-3xl p-7">
-              <p
-                class="text-xs font-semibold tracking-wide text-[color:var(--gold)]"
-              >
-                🎤 Demos Nacionales
-              </p>
-              <div
-                class="mt-3 title-font text-3xl font-semibold text-[color:var(--ink)]"
-              >
-                {pricing.demoNacional.price}
-              </div>
-              <p class="mt-4 text-sm text-black/70">
-                Demos en vivo frente al público, jueces y speakers
-                internacionales.
-              </p>
-              <div
-                class="mt-4 rounded-2xl stroke bg-white/60 p-4 text-sm text-black/70"
-              >
-                {pricing.demoNacional.note}
-              </div>
-              <ul class="mt-5 list-disc space-y-2 pl-5 text-sm text-black/70">
-                {pricing.demoNacional.bullets.map((b) => <li>{b}</li>)}
-              </ul>
-              <a
-                href="#contacto"
-                class="mt-6 inline-flex w-full items-center justify-center rounded-2xl px-5 py-3 text-sm font-semibold btn-soft"
-              >
-                Postularme como Demo
-              </a>
-            </div>
-          </div>
-        </section>
-
-        <!-- CLASIFICACIÓN -->
-        <section id="clasificacion" class="mx-auto max-w-6xl px-4 py-12">
-          <div class="card rounded-3xl p-8">
+          <div class="card rounded-3xl p-7">
             <p
-              class="text-xs font-semibold tracking-wide text-[color:var(--teal)]"
+              class="text-xs font-semibold tracking-wide text-[color:var(--lav)]"
             >
-              🌴 Clasificación Internacional
-            </p>
-            <h2
-              class="mt-2 title-font text-3xl font-semibold text-[color:var(--ink)]"
-            >
-              {finals.title}
-            </h2>
-            <p class="mt-4 max-w-3xl text-sm leading-relaxed text-black/70">
-              {finals.text}
+              🔥 {pricing.masterclass.title}
             </p>
 
-            <div class="mt-6 grid gap-4 md:grid-cols-2">
-              <div class="rounded-3xl stroke bg-white/60 p-6">
-                <div class="text-xs text-black/60">Destino</div>
-                <div class="mt-1 text-lg font-semibold text-[color:var(--ink)]">
-                  {finals.location}
-                </div>
-              </div>
-              <div class="rounded-3xl stroke bg-white/60 p-6">
-                <div class="text-xs text-black/60">Fecha</div>
-                <div class="mt-1 text-lg font-semibold text-[color:var(--ink)]">
-                  {finals.dates}
-                </div>
-              </div>
+            <p class="mt-2 text-sm font-semibold text-black/70">
+              {pricing.masterclass.dates}
+            </p>
+
+            <div class="mt-6 space-y-4">
+              {
+                pricing.masterclass.tiers.map((tier) => (
+                  <div
+                    class={`rounded-2xl stroke p-4 ${
+                      tier.status === "active"
+                        ? "bg-white ring-2 ring-[color:var(--rose)]"
+                        : tier.status === "closed"
+                          ? "bg-white/40 opacity-60"
+                          : "bg-white/60"
+                    }`}
+                  >
+                    <div class="flex items-center justify-between gap-3">
+                      <div>
+                        <span
+                          class={`font-semibold text-[color:var(--ink)] ${
+                            tier.status === "closed" ? "line-through" : ""
+                          }`}
+                        >
+                          {tier.label}
+                        </span>
+
+                        {tier.status === "closed" && (
+                          <p class="mt-1 text-xs font-semibold text-black/50">
+                            Finalizada
+                          </p>
+                        )}
+
+                        {tier.status === "active" && (
+                          <p class="mt-1 text-xs font-semibold text-[color:var(--rose)]">
+                            Activa ahora
+                          </p>
+                        )}
+
+                        {tier.status === "next" && (
+                          <p class="mt-1 text-xs font-semibold text-black/50">
+                            Próximamente
+                          </p>
+                        )}
+                      </div>
+
+                      <span
+                        class={`title-font text-xl font-semibold text-[color:var(--ink)] ${
+                          tier.status === "closed" ? "line-through" : ""
+                        }`}
+                      >
+                        {tier.cash}
+                      </span>
+                    </div>
+
+                    <div
+                      class={`mt-3 space-y-1 text-sm text-black/70 ${
+                        tier.status === "closed" ? "line-through" : ""
+                      }`}
+                    >
+                      <p>
+                        Precio de lista:{" "}
+                        <span class="font-semibold">{tier.list}</span>
+                      </p>
+                      <p>
+                        Efectivo / Transferencia:{" "}
+                        <span class="font-semibold">{tier.cash}</span>
+                      </p>
+                      <p>
+                        Seña:{" "}
+                        <span class="font-semibold text-[color:var(--rose)]">
+                          {tier.deposit}
+                        </span>
+                      </p>
+                      <p class="text-xs text-black/60">3 cuotas sin interés</p>
+                    </div>
+                  </div>
+                ))
+              }
             </div>
 
-            <div class="mt-7 flex flex-wrap gap-3">
-              <a
-                href="#contacto"
-                class="rounded-full px-6 py-3 text-sm font-semibold btn-primary"
-              >
-                Quiero competir y clasificar
-              </a>
-              <a
-                href="#categorias"
-                class="rounded-full px-6 py-3 text-sm font-semibold btn-soft"
-              >
-                Ver categorías
-              </a>
-            </div>
-          </div>
-        </section>
-
-        <!-- CONTACTO -->
-        <section id="contacto" class="mx-auto max-w-6xl px-4 py-14">
-          <div class="grid gap-6 md:grid-cols-3">
-            <div class="card rounded-3xl p-8 md:col-span-2">
-              <h2
-                class="title-font text-3xl font-semibold text-[color:var(--ink)]"
-              >
-                Contacto / Inscripción
-              </h2>
-
-              <div class="mt-6 flex flex-wrap gap-3">
-                <a
-                  href="https://wa.me/5491123160671?text=Hola,%20 Quiero%20info%20de%20la%20Copa%20America%20PMU%20Paraguay%20"
-                  target="_blank"
-                  class="rounded-full px-6 py-3 text-sm font-semibold btn-primary"
-                  rel="noreferrer"
-                >
-                  WhatsApp
-                </a>
-
-                <a
-                  href="#entradas"
-                  class="rounded-full px-6 py-3 text-sm font-semibold btn-soft"
-                >
-                  Ver precios
-                </a>
-
-                <a
-                  href="#top"
-                  class="rounded-full px-6 py-3 text-sm font-semibold btn-soft"
-                >
-                  Volver arriba
-                </a>
-              </div>
-
-              <div
-                class="mt-7 rounded-2xl stroke bg-white/60 p-5 text-sm text-black/70"
-              >
-                <p class="font-semibold text-[color:var(--ink)]">Sponsors</p>
-                <ul class="mt-3 list-disc space-y-2 pl-5 flex justify-around">
-                  <div class="bg-black w-30 rounded-full">
-                    <img src="/la-jefa-2.png" alt="" />
-                  </div>
-                  <div class="bg-black w-30 rounded-full">
-                    <img src="/omega.png" alt="" />
-                  </div>
-                  <div class="bg-black w-30 rounded-full">
-                    <img src="/srabellaza.png" alt="" />
-                  </div>
-                </ul>
-              </div>
-            </div>
-
-            <div class="card rounded-3xl p-8">
-              <p
-                class="text-xs font-semibold tracking-wide text-[color:var(--lav)]"
-              >
-                Resumen rápido
+            <div
+              class="mt-5 rounded-2xl border border-amber-300 bg-amber-50 p-4"
+            >
+              <p class="text-sm font-semibold text-amber-800">
+                ⚠️ Cupos limitados
               </p>
-              <div class="mt-4 space-y-3 text-sm text-black/70">
-                <div class="flex justify-between gap-4">
-                  <span>Preventa</span>
-                  <span class="font-semibold text-[color:var(--ink)]"
-                    >{pricing.presale.price}</span
-                  >
-                </div>
-                <div class="flex justify-between gap-4">
-                  <span>Cat. extra</span>
-                  <span class="font-semibold text-right text-[color:var(--ink)]"
-                    >{pricing.presale.extraCategory2}</span
-                  >
-                </div>
-                <div class="flex justify-between gap-4">
-                  <span>Masterclass</span>
-                  <span class="font-semibold text-[color:var(--ink)]"
-                    >{pricing.masterclass.price}</span
-                  >
-                </div>
-                <div class="flex justify-between gap-4">
-                  <span>Demo nacional</span>
-                  <span class="font-semibold text-[color:var(--ink)]"
-                    >{pricing.demoNacional.price}</span
-                  >
-                </div>
-              </div>
-
-              <div
-                class="mt-6 rounded-2xl stroke bg-white/60 p-3 text-s text-black/60 flex justify-center"
-              >
-                <a
-                  href="https://wa.me/5491123160671?text=Hola,%20 Quiero%20inscribirme%20"
-                  target="_blank"
-                  class="rounded-full px-25 py-3 text-sm font-semibold btn-primary"
-                  rel="noreferrer"
-                >
-                  Inscribirme
-                </a>
-              </div>
+              <p class="mt-2 text-sm text-amber-700">
+                {pricing.masterclass.note}
+              </p>
             </div>
+
+            <a
+              href="#contacto"
+              class="mt-6 inline-flex w-full items-center justify-center rounded-2xl px-5 py-3 text-sm font-semibold btn-primary"
+            >
+              Reservar Preventa 2
+            </a>
+          </div>
+
+          <div class="card rounded-3xl p-7">
+            <p
+              class="text-xs font-semibold tracking-wide text-[color:var(--rose)]"
+            >
+              🔥 Segunda Preventa Oficial
+            </p>
+            <div
+              class="mt-3 title-font text-3xl font-semibold text-[color:var(--ink)]"
+            >
+              {pricing.presale.price}
+            </div>
+            <ul class="mt-5 space-y-2 text-sm text-black/70">
+              {
+                pricing.presale.includes.map((i) => (
+                  <li class="flex gap-2">
+                    <span class="text-emerald-600">✔</span>
+                    <span>{i}</span>
+                  </li>
+                ))
+              }
+            </ul>
+            <div
+              class="mt-5 rounded-2xl stroke bg-white/60 p-4 text-sm text-black/70"
+            >
+              <span class="font-semibold text-[color:var(--ink)]">
+                Categorías adicionales:
+              </span>
+              {pricing.presale.extraCategory}
+            </div>
+            <a
+              href="#contacto"
+              class="mt-6 inline-flex w-full items-center justify-center rounded-2xl px-5 py-3 text-sm font-semibold btn-primary"
+            >
+              Reservar preventa
+            </a>
+          </div>
+
+          <div class="card rounded-3xl p-7">
+            <p
+              class="text-xs font-semibold tracking-wide text-[color:var(--gold)]"
+            >
+              🎤 Demos Nacionales
+            </p>
+            <div
+              class="mt-3 title-font text-3xl font-semibold text-[color:var(--ink)]"
+            >
+              {pricing.demoNacional.price}
+            </div>
+            <p class="mt-4 text-sm text-black/70">
+              Demos en vivo frente al público, jueces y speakers
+              internacionales.
+            </p>
+            <div
+              class="mt-4 rounded-2xl stroke bg-white/60 p-4 text-sm text-black/70"
+            >
+              {pricing.demoNacional.note}
+            </div>
+            <ul class="mt-5 list-disc space-y-2 pl-5 text-sm text-black/70">
+              {pricing.demoNacional.bullets.map((b) => <li>{b}</li>)}
+            </ul>
+            <a
+              href="#contacto"
+              class="mt-6 inline-flex w-full items-center justify-center rounded-2xl px-5 py-3 text-sm font-semibold btn-soft"
+            >
+              Postularme como Demo
+            </a>
           </div>
         </section>
       </main>
 
-      <!-- Mobile bottom nav -->
-      <nav
-        class="fixed bottom-3 left-1/2 z-50 w-[min(680px,92vw)] -translate-x-1/2 rounded-2xl border border-black/10 bg-white/70 p-2 backdrop-blur md:hidden"
-      >
-        <div class="flex items-center justify-between gap-2 overflow-x-auto">
-          {
-            nav.map((n) => (
-              <a
-                class="shrink-0 rounded-xl border border-black/10 bg-white/60 px-3 py-2 text-xs font-semibold text-black/70 hover:bg-white/85 transition"
-                href={`#${n.id}`}
-              >
-                {n.label}
-              </a>
-            ))
-          }
-        </div>
-      </nav>
-
-      <!-- HOTEL SEDE MEDELLÍN -->
-      <section id="hotel" class="mx-auto max-w-6xl px-4 py-12">
+      <section id="clasificacion" class="mx-auto max-w-6xl px-4 py-12">
         <div class="card rounded-3xl p-8">
           <p
             class="text-xs font-semibold tracking-wide text-[color:var(--teal)]"
           >
-            🏨 Hotel Sede Oficial
+            🌴 Clasificación Internacional
           </p>
-
           <h2
             class="mt-2 title-font text-3xl font-semibold text-[color:var(--ink)]"
           >
-            Hotel Intercontinental · Medellín
+            {finals.title}
           </h2>
-
           <p class="mt-4 max-w-3xl text-sm leading-relaxed text-black/70">
-            La Gran Final Copa América PMU se desarrollará en el
-            <span class="font-semibold text-[color:var(--ink)]"
-              >Hotel Intercontinental Medellín</span
-            >, un espacio de alto nivel que será sede oficial del Congreso CIM y
-            de las actividades principales del evento.
+            {finals.text}
           </p>
 
           <div class="mt-6 grid gap-4 md:grid-cols-2">
             <div class="rounded-3xl stroke bg-white/60 p-6">
-              <p class="text-xs text-black/60">📍 Ubicación</p>
-              <p class="mt-1 text-sm font-semibold text-[color:var(--ink)]">
-                Medellín, Colombia
-              </p>
-              <p class="mt-2 text-xs text-black/70">
-                Hotel sede del Congreso CIM 2026 y de la Gran Final Copa América
-                PMU.
-              </p>
+              <div class="text-xs text-black/60">Destino</div>
+              <div class="mt-1 text-lg font-semibold text-[color:var(--ink)]">
+                {finals.location}
+              </div>
             </div>
-
             <div class="rounded-3xl stroke bg-white/60 p-6">
-                <p class="object-cover mt-2 text-xs text-black/70">
-                  <img class="h-30 w-full object-cover rounded-2xl" src="intercontinental.jpg" alt="">
-                </p>
+              <div class="text-xs text-black/60">Fecha</div>
+              <div class="mt-1 text-lg font-semibold text-[color:var(--ink)]">
+                {finals.dates}
               </div>
+            </div>
+          </div>
+
+          <div class="mt-7 flex flex-wrap gap-3">
+            <a
+              href="#contacto"
+              class="rounded-full px-6 py-3 text-sm font-semibold btn-primary"
+            >
+              Quiero competir y clasificar
+            </a>
+            <a
+              href="#categorias"
+              class="rounded-full px-6 py-3 text-sm font-semibold btn-soft"
+            >
+              Ver categorías
+            </a>
           </div>
         </div>
       </section>
 
-      <section id="speakers-colombia" class="mx-auto max-w-6xl px-4 py-14">
-        <div class="card rounded-3xl p-8 md:p-10">
-          <div class="grid gap-8 md:grid-cols-2 md:items-center">
-            <!-- Texto -->
-            <div>
-              <p
-                class="text-xs font-semibold tracking-wide text-[color:var(--lav)]"
+      <section id="contacto" class="mx-auto max-w-6xl px-4 py-14">
+        <div class="grid gap-6 md:grid-cols-3">
+          <div class="card rounded-3xl p-8 md:col-span-2">
+            <h2
+              class="title-font text-3xl font-semibold text-[color:var(--ink)]"
+            >
+              Contacto / Inscripción
+            </h2>
+
+            <div class="mt-6 flex flex-wrap gap-3">
+              <a
+                href="https://wa.me/5491123160671?text=Hola,%20Quiero%20info%20de%20la%20Copa%20America%20PMU%20Paraguay%20"
+                target="_blank"
+                class="rounded-full px-6 py-3 text-sm font-semibold btn-primary"
+                rel="noreferrer"
               >
-                🎤 Speakers Internacionales · Medellín 2026
-              </p>
+                WhatsApp
+              </a>
 
-              <h2
-                class="mt-2 title-font text-3xl font-semibold text-[color:var(--ink)]"
+              <a
+                href="#entradas"
+                class="rounded-full px-6 py-3 text-sm font-semibold btn-soft"
               >
-                Referentes internacionales invitados
-              </h2>
+                Ver precios
+              </a>
 
-              <p class="mt-4 max-w-xl text-sm leading-relaxed text-black/70">
-                La Gran Final de la Copa América PMU contará con speakers
-                internacionales invitados dentro del Congreso CIM 2026,
-                referentes mundiales en técnica, educación y desarrollo
-                profesional dentro de la industria.
-              </p>
+              <a
+                href="#top"
+                class="rounded-full px-6 py-3 text-sm font-semibold btn-soft"
+              >
+                Volver arriba
+              </a>
+            </div>
 
-              <div class="mt-6 flex flex-wrap gap-2 text-xs text-black/60">
-                <span class="chip rounded-full px-3 py-2"
-                  >Educación avanzada</span
-                >
-                <span class="chip rounded-full px-3 py-2"
-                  >Técnicas de alto nivel</span
-                >
-                <span class="chip rounded-full px-3 py-2"
-                  >Escenario internacional</span
-                >
-                <span class="chip rounded-full px-3 py-2">Congreso CIM</span>
+            <div
+              class="mt-7 rounded-2xl stroke bg-white/60 p-5 text-sm text-black/70"
+            >
+              <p class="font-semibold text-[color:var(--ink)]">Sponsors</p>
+              <ul class="mt-3 flex list-none justify-around gap-4 p-0">
+                <li class="bg-black w-30 rounded-full">
+                  <img src="/la-jefa-2.png" alt="" />
+                </li>
+                <li class="bg-black w-30 rounded-full">
+                  <img src="/omega.png" alt="" />
+                </li>
+                <li class="bg-black w-30 rounded-full">
+                  <img src="/srabellaza.png" alt="" />
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card rounded-3xl p-8">
+            <p
+              class="text-xs font-semibold tracking-wide text-[color:var(--lav)]"
+            >
+              Resumen rápido
+            </p>
+            <div class="mt-4 space-y-3 text-sm text-black/70">
+              <div class="flex justify-between gap-4">
+                <span>Preventa</span>
+                <span class="font-semibold text-[color:var(--ink)]">
+                  {pricing.presale.price}
+                </span>
+              </div>
+              <div class="flex justify-between gap-4">
+                <span>Cat. extra</span>
+                <span class="font-semibold text-right text-[color:var(--ink)]">
+                  {pricing.presale.extraCategory2}
+                </span>
+              </div>
+             <div class="flex justify-between gap-4">
+                <span>Master Juan Cordero</span>
+                <span class="font-semibold text-[color:var(--ink)] margin-left-auto">
+                  USD 1000
+                </span>
+              </div>
+              <div class="flex justify-between gap-4">
+                <span>Demo nacional</span>
+                <span class="font-semibold text-[color:var(--ink)]">
+                  {pricing.demoNacional.price}
+                </span>
               </div>
             </div>
 
-            <!-- Imagen única -->
-            <div class="relative">
-              <div class="relative aspect-square overflow-hidden rounded-3xl">
-                <img
-                  src="/speakers.png"
-                  alt="Speakers internacionales Congreso CIM Medellín 2026"
-                  class="absolute inset-0 h-full w-full object-cover"
-                  loading="lazy"
-                />
-              </div>
-
-              <!-- Glow -->
-              <div
-                class="pointer-events-none absolute -bottom-8 -right-8 h-40 w-40 rounded-full bg-[color:var(--lav)]/20 blur-3xl"
+            <div
+              class="mt-6 rounded-2xl stroke bg-white/60 p-3 text-s text-black/60 flex justify-center"
+            >
+              <a
+                href="https://wa.me/5491123160671?text=Hola,%20Quiero%20inscribirme%20"
+                target="_blank"
+                class="rounded-full px-8 py-3 text-sm font-semibold btn-primary"
+                rel="noreferrer"
               >
-              </div>
+                Inscribirme
+              </a>
             </div>
           </div>
         </div>
       </section>
-
-      <footer class="border-t border-black/10 py-8">
-        <div
-          class="mx-auto flex max-w-6xl flex-col gap-2 px-4 text-xs text-black/55 md:flex-row md:items-center md:justify-between"
-        >
-          <p>© {new Date().getFullYear()} Copa América PMU · Paraguay</p>
-        </div>
-      </footer>
     </body>
+
+    <nav
+      class="fixed bottom-3 left-1/2 z-50 w-[min(680px,92vw)] -translate-x-1/2 rounded-2xl border border-black/10 bg-white/70 p-2 backdrop-blur md:hidden"
+    >
+      <div class="flex items-center justify-between gap-2 overflow-x-auto">
+        {
+          nav.map((n) => (
+            <a
+              class="shrink-0 rounded-xl border border-black/10 bg-white/60 px-3 py-2 text-xs font-semibold text-black/70 hover:bg-white/85 transition"
+              href={`#${n.id}`}
+            >
+              {n.label}
+            </a>
+          ))
+        }
+      </div>
+    </nav>
+
+    <section id="hotel" class="mx-auto max-w-6xl px-4 py-12">
+      <div class="card rounded-3xl p-8">
+        <p class="text-xs font-semibold tracking-wide text-[color:var(--teal)]">
+          🏨 Hotel Sede Oficial
+        </p>
+
+        <h2
+          class="mt-2 title-font text-3xl font-semibold text-[color:var(--ink)]"
+        >
+          Hotel Intercontinental · Medellín
+        </h2>
+
+        <p class="mt-4 max-w-3xl text-sm leading-relaxed text-black/70">
+          La Gran Final Copa América PMU se desarrollará en el
+          <span class="font-semibold text-[color:var(--ink)]">
+            Hotel Intercontinental Medellín
+          </span>, un espacio de alto nivel que será sede oficial del Congreso
+          CIM y de las actividades principales del evento.
+        </p>
+
+        <div class="mt-6 grid gap-4 md:grid-cols-2">
+          <div class="rounded-3xl stroke bg-white/60 p-6">
+            <p class="text-xs text-black/60">📍 Ubicación</p>
+            <p class="mt-1 text-sm font-semibold text-[color:var(--ink)]">
+              Medellín, Colombia
+            </p>
+            <p class="mt-2 text-xs text-black/70">
+              Hotel sede del Congreso CIM 2026 y de la Gran Final Copa América
+              PMU.
+            </p>
+          </div>
+
+          <div class="rounded-3xl stroke bg-white/60 p-6">
+            <img
+              class="h-30 w-full object-cover rounded-2xl"
+              src="/intercontinental.jpg"
+              alt="Hotel Intercontinental Medellín"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="speakers-colombia" class="mx-auto max-w-6xl px-4 py-14">
+      <div class="card rounded-3xl p-8 md:p-10">
+        <div class="grid gap-8 md:grid-cols-2 md:items-center">
+          <div>
+            <p
+              class="text-xs font-semibold tracking-wide text-[color:var(--lav)]"
+            >
+              🎤 Speakers Internacionales · Medellín 2026
+            </p>
+
+            <h2
+              class="mt-2 title-font text-3xl font-semibold text-[color:var(--ink)]"
+            >
+              Referentes internacionales invitados
+            </h2>
+
+            <p class="mt-4 max-w-xl text-sm leading-relaxed text-black/70">
+              La Gran Final de la Copa América PMU contará con speakers
+              internacionales invitados dentro del Congreso CIM 2026, referentes
+              mundiales en técnica, educación y desarrollo profesional dentro de
+              la industria.
+            </p>
+
+            <div class="mt-6 flex flex-wrap gap-2 text-xs text-black/60">
+              <span class="chip rounded-full px-3 py-2">Educación avanzada</span
+              >
+              <span class="chip rounded-full px-3 py-2"
+                >Técnicas de alto nivel</span
+              >
+              <span class="chip rounded-full px-3 py-2"
+                >Escenario internacional</span
+              >
+              <span class="chip rounded-full px-3 py-2">Congreso CIM</span>
+            </div>
+          </div>
+
+          <div class="relative">
+            <div class="relative aspect-square overflow-hidden rounded-3xl">
+              <img
+                src="/speakers.png"
+                alt="Speakers internacionales Congreso CIM Medellín 2026"
+                class="absolute inset-0 h-full w-full object-cover"
+                loading="lazy"
+              />
+            </div>
+
+            <div
+              class="pointer-events-none absolute -bottom-8 -right-8 h-40 w-40 rounded-full bg-[color:var(--lav)]/20 blur-3xl"
+            >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="border-t border-black/10 py-8">
+      <div
+        class="mx-auto flex max-w-6xl flex-col gap-2 px-4 text-xs text-black/55 md:flex-row md:items-center md:justify-between"
+      >
+        <p>© {new Date().getFullYear()} Copa América PMU · Paraguay</p>
+      </div>
+    </footer>
   </html>
 </Layout>
